@@ -1,0 +1,27 @@
+name: centos-6
+version: 2
+summary: Just Enough Operating System based on CentOS 6
+os:
+  name: centos
+  version: 6
+hardware:
+  partitions:
+    "/":
+       size: 16
+packages:
+  - @core
+  - nano
+  - git
+  - mercurial
+  - xfsprogs
+  - p7zip
+  - wget
+
+repos:
+  - name: "EPEL"
+    mirrorlist: http://mirrors.fedoraproject.org/mirrorlist?repo=epel-6&arch=x86_64
+
+post:
+  base:
+    - "echo 0 > /selinux/enforce"
+    - "sed -i 's/SELINUX=.*/SELINUX=disabled/' /etc/selinux/config"
